@@ -5,8 +5,12 @@ const app = express();
 app.use(express.json()); //Para o código saber que estamos usando json
 app.use(cors());
 
+// Dados armazenados
+
 const users = [{username: "bobesponja", avatar: "https://super.abril.com.br/wp-content/uploads/2020/09/04-09_gato_SITE.jpg?quality=70&strip=info"}];
 const tweets = [{username: "bobesponja", tweet: "eu amo o hub"}];
+
+// Rotas de cadastro
 
 app.post("/sign-up", (req, res) => {
     let {username, avatar} = req.body;
@@ -17,6 +21,8 @@ app.post("/sign-up", (req, res) => {
     res.send("OK");
 });
 
+// Rotas dos Tweets
+
 app.post("/tweets", (req, res) => {
     let {username, tweet} = req.body;
     tweets.push({
@@ -26,6 +32,18 @@ app.post("/tweets", (req, res) => {
     res.send("OK");
 })
 
+app.get("/tweets", (req, res) => {
+    const tweetsToDisplay = [];
+    for (let i=tweets.length; ((i > tweets.length - 10) && (i > 0)); i--) {
+        let object = users.find(user => user.username == tweets[i].username);
+        tweetsToDisplay.push({
+            username: tweets[i].username,
+            avatar: object.avatar,
+            tweet: tweets[i].tweet
+        });
+    };
+    res.send(tweetsToDisplay);
+})
 
 
 
