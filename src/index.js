@@ -1,7 +1,9 @@
 import express from "express";
+import cors from "cors";
 
 const app = express();
 app.use(express.json()); //Para o código saber que estamos usando json
+app.use(cors());
 
 const users = [{username: "bobesponja", avatar: "https://super.abril.com.br/wp-content/uploads/2020/09/04-09_gato_SITE.jpg?quality=70&strip=info"}];
 const tweets = [{username: "bobesponja", tweet: "eu amo o hub"}];
@@ -21,7 +23,7 @@ app.post("/tweets", (req, res) => {
         username,
         tweet
     });
-    res.send(tweets);
+    res.send("OK");
 })
 
 
