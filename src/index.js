@@ -30,27 +30,21 @@ app.post("/tweets", (req, res) => {
         tweet
     });
     res.send("OK");
-})
+});
 
 app.get("/tweets", (req, res) => {
     const tweetsToDisplay = [];
     for (let i=tweets.length; ((i > tweets.length - 10) && (i > 0)); i--) {
-        let object = users.find(user => user.username == tweets[i].username);
+        let tweet = tweets[i-1];
+        let objeto = users.find(user => user.username === tweet.username);
         tweetsToDisplay.push({
-            username: tweets[i].username,
-            avatar: object.avatar,
-            tweet: tweets[i].tweet
+            username: tweet.username,
+            avatar: objeto.avatar,
+            tweet: tweet.tweet
         });
     };
     res.send(tweetsToDisplay);
-})
-
-
-
-
-
-
-
+});
 
 
 
