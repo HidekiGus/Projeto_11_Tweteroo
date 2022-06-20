@@ -18,7 +18,7 @@ app.post("/sign-up", (req, res) => {
         username,
         avatar
     });
-    res.send("OK");
+    res.status(201).send("OK");
 });
 
 // Rotas dos Tweets
@@ -29,7 +29,7 @@ app.post("/tweets", (req, res) => {
         username,
         tweet
     });
-    res.send("OK");
+    res.status(201);send("OK");
 });
 
 app.get("/tweets", (req, res) => {
