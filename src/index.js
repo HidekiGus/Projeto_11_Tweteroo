@@ -25,11 +25,14 @@ app.post("/sign-up", (req, res) => {
 
 app.post("/tweets", (req, res) => {
     let {username, tweet} = req.body;
+    if ((username === undefined) || (tweet === undefined)) {
+        res.sendStatus(400);
+    }
     tweets.push({
         username,
         tweet
     });
-    res.status(201);send("OK");
+    res.status(201).send("OK");
 });
 
 app.get("/tweets", (req, res) => {
